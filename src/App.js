@@ -8,7 +8,6 @@ function App() {
     <div>
       <h1>{name}</h1>
       <button onClick={() => setName("Ahmed")}>Change Name</button>
-      <button onClick={() => setName("Zeeshan")}>Change Name</button>
     </div>
   );
 }
