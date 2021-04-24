@@ -1,15 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import TodoList from "./TodoList";
 
 function App() {
-  const [name, setName] = useState("Zeeshan");
-
   return (
-    <div>
-      <h1>{name}</h1>
-      <button onClick={() => setName("Ahmed")}>Change Name</button>
-      <button>Disabled button for no reason</button>
-</div>
+    <div className="app">
+      <h1>Todo List</h1>
+      <TodoList />
+    </div>
   );
 }
 
