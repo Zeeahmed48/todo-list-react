@@ -10,9 +10,6 @@ body {
   background-color: rgb(44, 44, 44);
   color: #fff;
   font-family: "Montserrat", sans-serif;
-  /* position: relative;
-  width: 100vw;
-  height: 100vh; */
 }
 
 #root {
@@ -24,8 +21,9 @@ body {
 .app {
   max-width: 350px;
   width: 90%;
-  /* margin: 0 auto; */
-  background-color: aqua;
+  height: 80vh;
+  text-align: center;
+  background-color: rgb(161, 177, 248);
   position: absolute;
   top: 50%;
   left: 50%;

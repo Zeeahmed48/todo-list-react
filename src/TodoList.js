@@ -3,25 +3,25 @@ import { useState } from "react";
 import Todo from "./Todo";
 
 const TodoList = () => {
-  const [todo, setTodo] = useState([]);
-  const handleSetTodo = () => {
-    console.log(todo);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState("");
+  const addTodo = () => {
+    setTodo('')
+    const tempTodos = [...todos]
+    tempTodos.push(todo)
+    setTodos(tempTodos);
+    console.log(todos)
   };
 
   return (
     <div className="todo-lists">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          onChange={(e) => setTodo(e.target.value)}
-          value={todo}
-        />
-        <button onClick={handleSetTodo}>Add todo</button>
-        <Todo todo={todo} />
-      </form>
+      <input
+        type="text"
+        onChange={(e) => setTodo(e.target.value)}
+        value={todo}
+      />
+      <button onClick={addTodo}>Add todo</button>
+      <Todo todos={todos} />
     </div>
   );
 };

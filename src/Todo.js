@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Todo = ({todo}) => {
+const Todo = ({todos}) => {
     return (
         <div>
             {/* <ul>
@@ -9,7 +9,7 @@ const Todo = ({todo}) => {
         })}
       </ul> */}
       <ul className="todo__item">
-          <li>1</li>
+          {todos.map(todo => <li key={Math.random()}>{todo}</li>)}
       </ul>
         </div>
     )
