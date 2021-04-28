@@ -5,23 +5,50 @@ import Todo from "./Todo";
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState("");
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [oldTodoIndex, setOldTodoIndex] = useState("");
+  const [updatedTodo, setUpdatedTodo] = useState("");
   const addTodo = () => {
-    setTodo('')
-    const tempTodos = [...todos]
-    tempTodos.push(todo)
+    const tempTodos = [...todos, todo];
     setTodos(tempTodos);
-    console.log(todos)
+    setTodo("");
+  };
+  const deleteTodo = (id) => {
+    const tempTodos = [...todos];
+    tempTodos.splice(id, 1);
+    setTodos(tempTodos);
+  };
+  const editTodo = (id, oldValue) => {
+    setIsEditMode(true);
+    setUpdatedTodo(oldValue);
+    setOldTodoIndex(id);
+  };
+  const updateTodo = () => {
+    const tempTodos = [...todos];
+    tempTodos.splice(oldTodoIndex, 1, updatedTodo);
+    setTodos(tempTodos);
+    setUpdatedTodo("");
+    setIsEditMode(false);
   };
 
   return (
     <div className="todo-lists">
+      <h1>Todo List</h1>
       <input
         type="text"
-        onChange={(e) => setTodo(e.target.value)}
-        value={todo}
+        onChange={
+          isEditMode
+            ? (e) => setUpdatedTodo(e.target.value)
+            : (e) => setTodo(e.target.value)
+        }
+        value={isEditMode ? updatedTodo : todo}
       />
-      <button onClick={addTodo}>Add todo</button>
-      <Todo todos={todos} />
+      {isEditMode ? (
+        <button onClick={updateTodo}>Update todo</button>
+      ) : (
+        <button onClick={addTodo}>Add todo</button>
+      )}
+      <Todo todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
     </div>
   );
 };
